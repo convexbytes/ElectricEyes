@@ -1,0 +1,112 @@
+#!/bin/bash
+
+#---------------------------------------------------------#
+EXECUTABLE=ollamani_pilli
+#---------------------------------------------------------#
+
+
+#---------------------------------------------------------#
+# User defined properties
+# Cannot have spaces
+TEAMNAME=ollamani_pilli
+VERSION=15.1
+HOST=localhost
+PORT=6000
+LOG=$TEAMNAME.log
+
+#---------------------------------------------------------#
+
+
+
+#---------------------------------------------------------#
+# --------------  Debug configuration ------------------- #
+
+# --- Memory dumping
+# Uncomment next line to activate memory dumping
+ulimit -c unlimited
+
+# --- Valgrind configuration
+
+VALGRIND=
+# Uncomment one of the lines below to activate valgrind analysis
+# -> 1 Memcheck tool
+#VALGRIND="valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --num-callers=20 --track-fds=yes "
+# -> 2 Helgrind tool
+#VALGRIND="valgrind --tool=helgrind "
+# -> 3 DRD tool
+#VALGRIND="valgrind --tool=drd "
+VALGRIND_OUT_PREFIX="valgrind_out"
+VALGRIND_OUT_1=
+VALGRIND_OUT_2=
+VALGRIND_OUT_3=
+VALGRIND_OUT_4=
+VALGRIND_OUT_5=
+VALGRIND_OUT_6=
+VALGRIND_OUT_7=
+VALGRIND_OUT_8=
+VALGRIND_OUT_9=
+VALGRIND_OUT_10=
+VALGRIND_OUT_11=
+if test -n "$VALGRIND"
+then
+	VALGRIND_OUT_1='--log-file='$VALGRIND_OUT_PREFIX'_1'
+	VALGRIND_OUT_2='--log-file='$VALGRIND_OUT_PREFIX'_2'
+	VALGRIND_OUT_3='--log-file='$VALGRIND_OUT_PREFIX'_3'
+	VALGRIND_OUT_4='--log-file='$VALGRIND_OUT_PREFIX'_4'
+	VALGRIND_OUT_5='--log-file='$VALGRIND_OUT_PREFIX'_5'
+	VALGRIND_OUT_6='--log-file='$VALGRIND_OUT_PREFIX'_6'
+	VALGRIND_OUT_7='--log-file='$VALGRIND_OUT_PREFIX'_7'
+	VALGRIND_OUT_8='--log-file='$VALGRIND_OUT_PREFIX'_8'
+	VALGRIND_OUT_9='--log-file='$VALGRIND_OUT_PREFIX'_9'
+	VALGRIND_OUT_10='--log-file='$VALGRIND_OUT_PREFIX'_10'
+	VALGRIND_OUT_11='--log-file='$VALGRIND_OUT_PREFIX'_11'
+fi
+
+# --- Profiling configuration
+GPROF=""
+#---------------------------------------------------------#
+
+
+
+#---------------------------------------------------------#
+# ------------------ Agent execution -------------------- #
+
+echo "Date:" `date` > "$LOG"
+echo "Teamname: $TEAMNAME" >> "$LOG"
+echo "Server host: $HOST" >> "$LOG"
+echo "Server port: $PORT" >> "$LOG" 
+$VALGRIND $VALGRIND_OUT_1 ./$EXECUTABLE $VERSION $HOST $PORT $TEAMNAME 1 true >> "$LOG" &
+PID1=$!
+sleep 0.1
+$VALGRIND $VALGRIND_OUT_2 ./$EXECUTABLE $VERSION $HOST $PORT $TEAMNAME 2 false >> "$LOG" &
+PID2=$!
+sleep 0.1
+$VALGRIND $VALGRIND_OUT_3 ./$EXECUTABLE $VERSION $HOST $PORT $TEAMNAME 3 false >> "$LOG" &
+PID3=$!
+sleep 0.1
+$VALGRIND $VALGRIND_OUT_4 ./$EXECUTABLE $VERSION $HOST $PORT $TEAMNAME 4 false >> "$LOG" &
+PID4=$!
+sleep 0.1
+$VALGRIND $VALGRIND_OUT_5 ./$EXECUTABLE $VERSION $HOST $PORT $TEAMNAME 5 false >> "$LOG" &
+PID5=$!
+sleep 0.1
+$VALGRIND $VALGRIND_OUT_6 ./$EXECUTABLE $VERSION $HOST $PORT $TEAMNAME 6 false >> "$LOG" &
+PID6=$!
+sleep 0.1
+$VALGRIND $VALGRIND_OUT_7 ./$EXECUTABLE $VERSION $HOST $PORT $TEAMNAME 7 false >> "$LOG" &
+PID7=$!
+sleep 0.1
+$VALGRIND $VALGRIND_OUT_8 ./$EXECUTABLE $VERSION $HOST $PORT $TEAMNAME 8 false >> "$LOG" &
+PID8=$!
+sleep 0.1
+$VALGRIND $VALGRIND_OUT_9 ./$EXECUTABLE $VERSION $HOST $PORT $TEAMNAME 9 false >> "$LOG" &
+PID9=$!
+sleep 0.1
+$VALGRIND $VALGRIND_OUT_10 ./$EXECUTABLE $VERSION $HOST $PORT $TEAMNAME 10 false >> "$LOG" &
+PID10=$!
+sleep 0.1
+$VALGRIND $VALGRIND_OUT_11 ./$EXECUTABLE $VERSION $HOST $PORT $TEAMNAME 11 false >> "$LOG" &
+PID11=$!
+
+echo $PID1 $PID2 $PID3 $PID4 $PID5 $PID6 $PID7 $PID8 $PID9 $PID10 $PID11 > pids
+#---------------------------------------------------------#
