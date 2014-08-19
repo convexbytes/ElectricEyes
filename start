@@ -1,14 +1,14 @@
 #!/bin/bash
 
 #---------------------------------------------------------#
-EXECUTABLE=ollamani_pilli
+EXECUTABLE=electric_eyes
 #---------------------------------------------------------#
 
 
 #---------------------------------------------------------#
 # User defined properties
 # Cannot have spaces
-TEAMNAME=ollamani_pilli
+TEAMNAME=ElectricEyes
 VERSION=15.1
 HOST=localhost
 PORT=6000

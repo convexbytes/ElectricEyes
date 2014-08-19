@@ -2,7 +2,7 @@ CC 				= g++
 CFLAGS 			= -g -Wall -o3
 LDFLAGS 		= 
 LDLIBS 			= -L/usr/lib -lm -lrt -lpthread
-EXECUTABLE 		= ollamani_pilli
+EXECUTABLE 		= electric_eyes
 OBJ_DIR 		= obj
 SRC_DIR 		= src
 INCLUDES		= $(SRC_DIR)/includes.h
@@ -11,10 +11,10 @@ OBJECTS 		:= $(filter-out $(OBJ_DIR)/main.o, $(OBJECTS))
 PARSER_DIR 		= src/parser
 PARSER_OBJ_DIR 	= src/parser
 PARSER_OBJ 		:= $(PARSER_OBJ_DIR)/client_parser.tab.o $(PARSER_OBJ_DIR)/lex.yy.o $(PARSER_OBJ_DIR)/client_parser_driver.o
-PARSER_DEPENDENCIES := $(PARSER_DIR)/client_parser.y $(PARSER_DIR)/client_lexer.l $(PARSER_DIR)/client_parser_driver.cpp $(PARSER_DIR)/client_parser_driver.h $(PARSER_DIR)/client_parser_types.h
+PARSER_DEPENDENCIES := $(PARSER_DIR)/client_parser.y $(PARSER_DIR)/client_lexer.l $(PARSER_DIR)/client_lexer.h $(PARSER_DIR)/client_parser_driver.cpp $(PARSER_DIR)/client_parser_driver.h $(PARSER_DIR)/client_parser_types.h
 PARSER_LDLIBS 	= -lfl
 
-all: $(OBJ_DIR) $(OBJECTS) $(EXECUTABLE) $(PARSER_DEPENDENCIES)
+all: $(OBJ_DIR) $(PARSER_DEPENDENCIES) $(OBJECTS) $(EXECUTABLE)
 
 $(EXECUTABLE): $(OBJECTS) $(PARSER_OBJ) $(OBJ_DIR)/main.o
 	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJECTS) $(PARSER_OBJ) $(OBJ_DIR)/main.o $(LDLIBS) $(PARSER_LDLIBS)  -o $(EXECUTABLE)
