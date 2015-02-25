@@ -65,13 +65,12 @@ Agent::r_init( std::string teamname, int unum, bool goalie,
 
 	if( not_initialized )
 	{
-		M_teamname = teamname;
-		M_unum = unum;
-		M_goalie = goalie;
+		M_teamname      = teamname;
+		M_unum          = unum;
+		M_goalie        = goalie;
 		M_serverversion = serverversion;
-		char number[3];
-		snprintf( number, 3, "%d", unum );
-		M_sign = teamname + " " + number;
+		std::stringstream sign; sign << teamname << " " << unum;
+		M_sign          = sign.str();
 		not_initialized = false;
 	}
 }

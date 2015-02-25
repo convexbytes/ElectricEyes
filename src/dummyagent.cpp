@@ -9,9 +9,9 @@
 void 
 DummyAgent::think()
 {
-	char  msg[20];
-	snprintf( msg, 20, "hi %d", M_time );
-	M_actuator.say( msg );
+	std::stringstream msg;
+	msg << "Hi " << M_time;
+	M_actuator.say( msg.str() );
 }
 
 void 

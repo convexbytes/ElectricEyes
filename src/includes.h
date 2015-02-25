@@ -21,6 +21,7 @@
 #include <vector>
 #include <limits>
 #include <iostream>
+#include <sstream>
 
 #include <unistd.h>
 #include <pthread.h>

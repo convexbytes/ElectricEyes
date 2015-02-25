@@ -163,9 +163,9 @@ void Client::main_loop()
 		Log::init();
 		Log::set_stream( stdout );
 		Log::set_level( Log::DEBUG );
-		char num[3]; snprintf( num, 3, "%u", unum() );
-		std::string signature = teamname() + " " + num ;
-		Log::set_signature( signature  );
+		std::stringstream signature;
+		signature << teamname() << " " << unum();
+		Log::set_signature( signature.str()  );
 	}
 
 	{

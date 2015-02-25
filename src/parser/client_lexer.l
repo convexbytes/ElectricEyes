@@ -510,7 +510,8 @@ static yy::location loc;		/* The location of the current token */
 "yellow_card_r_"[0-9] { unsigned x = (unsigned int) strtol(yytext+14, NULL, 10); return yy::RcssParser::make_YELLOW_CARD_R_NUMBER( x, loc ); }
 "red_card_r_"[0-9] { unsigned x = (unsigned int) strtol(yytext+11, NULL, 10); return yy::RcssParser::make_RED_CARD_L_NUMBER( x, loc ); }
 "red_card_l_"[0-9] { unsigned x = (unsigned int) strtol(yytext+11, NULL, 10); return yy::RcssParser::make_RED_CARD_R_NUMBER( x, loc ); }
-
+"foul_l" { return yy::RcssParser::make_FOUL_L( loc ); }
+"foul_r" { return yy::RcssParser::make_FOUL_R( loc );}
 
 [a-zA-Z_]+[a-zA-Z0-9_]* {  return yy::RcssParser::make_IDENTIFIER(yytext, loc); }
 [0-9]+[a-zA-Z0-9_]* 	{  return yy::RcssParser::make_UNKOWN(loc); }

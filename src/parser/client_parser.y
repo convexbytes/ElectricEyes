@@ -546,6 +546,8 @@
 %token <unsigned> RED_CARD_L_NUMBER
 %token PENALTY_ONFIELD_L
 %token PENALTY_ONFIELD_R
+%token FOUL_L
+%token FOUL_R
 
 /* Specify the types of nonterminal symbols */
 /* The namespace must be included because the code generated 
@@ -1501,7 +1503,6 @@ hear:
 		tmp_hear.sender 	= SENDER_REFEREE;
 		tmp_hear.playmode 	= PMH_RED_CARD_R; 
 		tmp_hear.cards 		= $5;
-
 	}
 	| LP HEAR NUMBER REFEREE IDENTIFIER RP /*HEAR time REFEREE msg */
 	{
@@ -1510,7 +1511,7 @@ hear:
 		tmp_hear.playmode 	= PMH_NULL;
 		tmp_hear.message 	= $5;
 		std::cerr << "ClientParser: "
-				<< "Unkown form \"" << $5 << "\""
+				<< "Unkown HEAR NUMBER REFEREE form \"" << $5 << "\""
 				<< std::endl;
 
 	}
@@ -1581,6 +1582,14 @@ hear:
 		tmp_hear.sender 	= SENDER_ONLINE_COACH_R;
 		tmp_hear.message 	= $5;
 	}
+	| LP HEAR FOUL_L RP 
+	{
+
+	}
+	| LP HEAR FOUL_R RP 
+	{
+
+	}
 ;
 
 playmode_hearable:
@@ -1594,6 +1603,8 @@ playmode_hearable:
 	| PENALTY_WINNER_L { $$ = PMH_PENALTY_WINNER_L;}
 	| PENALTY_WINNER_R { $$ = PMH_PENALTY_WINNER_R;}
 	| PENALTY_DRAW { $$ = PMH_PENALTY_DRAW;}
+	| FOUL_L { $$ = PMH_FOUL_L; }
+	| FOUL_R { $$ = PMH_FOUL_R; }
 
 ;
 
